@@ -1,0 +1,37 @@
+@import '~/src/scss/variables';
+@import '~/src/scss/mixins';
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__window {
+    padding: 20px;
+    min-width: 400px;
+    max-width: 500px;
+    background-color: #fff;
+    position: relative;
+    @include border-radius;
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    color: $primary-purple;
+    font-size: 20px;
+    transition: 0.3s ease transform;
+
+    &:hover {
+      cursor: pointer;
+      transform: rotate(90deg);
+    }
+  }
+}

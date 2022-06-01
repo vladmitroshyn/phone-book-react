@@ -1,0 +1,11 @@
+@import '~/src/scss/_variables';
+@import '~/src/scss/_mixins';
+
+.form {
+  &__input {
+    border: 2px solid #aaa;
+    padding: 10px;
+    margin-top: 10px;
+    @include border-radius;
+  }
+}

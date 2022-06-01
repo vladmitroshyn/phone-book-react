@@ -1,0 +1,15 @@
+@import '~/src/scss/_variables';
+@import '~/src/scss/_mixins';
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__submit-btn {
+    color: #fff;
+    background-color: $primary-purple;
+    margin-top: 10px;
+    padding: 10px;
+    @include border-radius;
+  }
+}
