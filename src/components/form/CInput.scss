@@ -8,8 +8,19 @@
     margin-top: 10px;
     @include border-radius;
 
+    &:focus {
+      border-color: $primary-purple;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+        0 0 0 3px rgba(142, 30, 212, 0.1);
+      outline: none;
+    }
+
     &_invalid {
       border-color: $error-red;
+
+      &:focus {
+        border-color: $error-red;
+      }
     }
   }
   &__error-message {
