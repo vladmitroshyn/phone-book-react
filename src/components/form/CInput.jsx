@@ -7,20 +7,28 @@ const CInput = ({
   name,
   placeholder,
   updateValue,
-  validationRules,
+  onBlur,
+  touched,
   errors,
 }) => {
   return (
     <>
       <input
         type="text"
-        className="form__input"
+        className={`form__input ${
+          touched[name] && errors[name] && 'form__input_invalid'
+        }`}
         value={value}
-        name={name}
         placeholder={placeholder}
         autoComplete="off"
+        name={name}
         onChange={(e) => updateValue(e)}
+        onBlur={onBlur}
+        errors={errors}
       />
+      {touched[name] && errors[name] ? (
+        <span className="form__error-message">{errors[name]}</span>
+      ) : null}
     </>
   );
 };
@@ -30,7 +38,8 @@ CInput.propTypes = {
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   updateValue: PropTypes.func.isRequired,
-  validationRules: PropTypes.object,
+  onBlur: PropTypes.func,
+  touched: PropTypes.object,
   errors: PropTypes.object,
 };
 

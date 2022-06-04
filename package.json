@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@hookform/resolvers": "^2.8.10",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "formik": "^2.2.9",
+    "libphonenumber-js": "^1.10.6",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -45,5 +46,8 @@
     "eslint": "^8.16.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-react": "^7.30.0"
+  },
+  "resolutions": {
+    "react-devtools-core": "4.24.7"
   }
 }
