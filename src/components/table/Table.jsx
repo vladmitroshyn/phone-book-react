@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Table.scss';
 import TableHeader from './TableHeader';
-import TableRow from './TableRow';
+import TableBody from './TableBody';
+import './Table.scss';
 
 const Table = ({ records, openEditModal, deleteRecord }) => {
   return (
@@ -11,16 +11,11 @@ const Table = ({ records, openEditModal, deleteRecord }) => {
       <div className="table">
         <table className="table__inner">
           <TableHeader />
-          <tbody>
-            {records.map((record) => (
-              <TableRow
-                key={record.id}
-                record={record}
-                openEditModal={openEditModal}
-                deleteRecord={deleteRecord}
-              />
-            ))}
-          </tbody>
+          <TableBody
+            records={records}
+            openEditModal={openEditModal}
+            deleteRecord={deleteRecord}
+          />
         </table>
       </div>
     </>

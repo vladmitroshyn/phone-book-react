@@ -14,8 +14,9 @@
 
   &__window {
     padding: 20px;
-    min-width: 400px;
-    max-width: 500px;
+    width: 75%;
+    min-width: 340px;
+    max-width: 490px;
     background-color: #fff;
     position: relative;
     @include border-radius;

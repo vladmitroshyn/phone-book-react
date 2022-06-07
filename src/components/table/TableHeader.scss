@@ -1,34 +1,47 @@
 @import '~/src/scss/mixins';
 
-thead {
-  tr {
+.thead {
+  &__tr {
     background-color: #f8f8f8;
     border: 1px solid #dedede;
     padding: 5px;
   }
 
-  th {
+  &__th {
     padding: 10px;
     text-align: center;
     min-height: 40px;
     @include table-row-headers;
-  }
 
-  th:nth-child(1),
-  th:nth-child(2) {
-    width: 15%;
-  }
+    &:nth-child(1),
+    &:nth-child(2) {
+      width: 15%;
+    }
 
-  th:nth-child(3) {
-    width: 25%;
-  }
+    &:nth-child(3) {
+      width: 25%;
+    }
 
-  th:nth-child(4) {
-    width: 35%;
-  }
+    &:nth-child(4) {
+      width: 35%;
+    }
 
-  th:nth-child(5),
-  th:nth-child(6) {
-    width: 5%;
+    &:nth-child(5),
+    &:nth-child(6) {
+      width: 5%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .thead {
+    border: none;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
   }
 }

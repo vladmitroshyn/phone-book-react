@@ -30,6 +30,21 @@ body {
   color: $primary-dark;
 }
 
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .app {
   &__wrapper {
     width: 90%;
@@ -40,11 +55,6 @@ body {
 
   &__header {
     margin-top: 40px;
-    h1 {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 600;
-    }
   }
 
   &__main {
@@ -59,7 +69,8 @@ body {
 
 .main {
   &__form {
-    // min-width: 300px;
+    width: 75%;
+    min-width: 300px;
     max-width: 450px;
     margin: 0 auto;
   }

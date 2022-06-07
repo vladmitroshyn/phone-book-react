@@ -7,12 +7,16 @@ const CInput = ({ placeholder, register, errors }) => {
     <>
       <input
         type="text"
-        className="form__input"
+        className={`form__input ${
+          errors[register.name] ? 'form__input_invalid' : null
+        }`}
         placeholder={placeholder}
         autoComplete="off"
         {...register}
       />
-      <span>{errors[register.name]?.message}</span>
+      <span className="form__error-message">
+        {errors[register.name]?.message}
+      </span>
     </>
   );
 };
