@@ -1,60 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import ContactSchema from '../../validation';
 import CInput from './CInput';
 import './Form.scss';
 
-const initialState = {
-  firstName: '',
-  lastName: '',
-  phone: '',
-  email: '',
-};
-
 const Form = ({ updateContact, editMode, editedContact }) => {
-  const [contact, setContact] = useState(initialState);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: useMemo(() => {
+      return editedContact;
+    }, [editedContact]),
+    mode: 'onChange',
+    resolver: yupResolver(ContactSchema),
+  });
 
-  useEffect(() => {
-    if (editedContact) {
-      setContact({ ...editedContact });
-    }
-  }, [editedContact]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setContact({ ...contact, [name]: value });
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    updateContact({ id: new Date().valueOf(), ...contact });
-    setContact(initialState);
+  const onSubmit = (data) => {
+    updateContact({ id: new Date().valueOf(), ...data });
+    reset();
   };
 
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <CInput
-        value={contact.firstName}
-        name="firstName"
         placeholder="First Name"
-        updateValue={handleChange}
+        register={register('firstName')}
+        errors={errors}
       />
       <CInput
-        value={contact.lastName}
-        name="lastName"
         placeholder="Last Name"
-        updateValue={handleChange}
+        register={register('lastName')}
+        errors={errors}
       />
       <CInput
-        value={contact.phone}
-        name="phone"
         placeholder="Phone"
-        updateValue={handleChange}
+        register={register('phone')}
+        errors={errors}
       />
       <CInput
-        value={contact.email}
-        name="email"
         placeholder="Email"
-        updateValue={handleChange}
+        register={register('email')}
+        errors={errors}
       />
       <button type="submit" className="form__submit-btn">
         {editMode ? 'Update' : 'Add'}
@@ -65,7 +56,12 @@ const Form = ({ updateContact, editMode, editedContact }) => {
 
 Form.defaultProps = {
   editMode: false,
-  editedContact: null,
+  editedContact: {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+  },
 };
 
 Form.propTypes = {

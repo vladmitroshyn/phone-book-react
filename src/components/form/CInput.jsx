@@ -2,35 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './CInput.scss';
 
-const CInput = ({
-  value,
-  name,
-  placeholder,
-  updateValue,
-  validationRules,
-  errors,
-}) => {
+const CInput = ({ placeholder, register, errors }) => {
   return (
     <>
       <input
         type="text"
         className="form__input"
-        value={value}
-        name={name}
         placeholder={placeholder}
         autoComplete="off"
-        onChange={(e) => updateValue(e)}
+        {...register}
       />
+      <span>{errors[register.name]?.message}</span>
     </>
   );
 };
 
 CInput.propTypes = {
-  value: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  updateValue: PropTypes.func.isRequired,
-  validationRules: PropTypes.object,
+  register: PropTypes.object,
   errors: PropTypes.object,
 };
 
