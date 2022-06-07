@@ -1,21 +1,21 @@
 @import '~/src/scss/variables';
 @import '~/src/scss/mixins';
 
-.table {
-  &__row {
+.tbody {
+  &__tr {
     background-color: #f8f8f8;
     border: 1px solid #ddd;
+  }
 
-    td {
-      padding: 10px;
-      text-align: center;
-      min-height: 40px;
-    }
+  &__td {
+    padding: 10px;
+    text-align: center;
+    min-height: 40px;
+  }
 
-    td:nth-child(5),
-    td:nth-child(6) {
-      padding: 0;
-    }
+  &__td:nth-child(5),
+  &__td:nth-child(6) {
+    padding: 0;
   }
 
   &__btn-wrapper {
@@ -24,30 +24,25 @@
     align-items: center;
   }
 
-  &__edit-btn,
-  &__delete-btn {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-
+  &__btn-edit,
+  &__btn-delete {
     &:hover {
       cursor: pointer;
     }
   }
 
-  &__edit-btn {
+  &__btn-edit {
     color: $primary-dark;
   }
 
-  &__delete-btn {
+  &__btn-delete {
     color: $error-red;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .table {
-    &__row {
+  .tbody {
+    &__tr {
       border-bottom: 3px solid #ddd;
       display: block;
       margin-bottom: 15px;
@@ -56,42 +51,34 @@
       &:last-child {
         margin: 0;
       }
+    }
 
-      td {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        text-align: right;
-        position: relative;
+    &__td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      text-align: right;
+      position: relative;
 
-        &::before {
-          content: attr(data-label);
-          position: absolute;
-          left: 10px;
-          top: 50%;
-          transform: translate(0, -50%);
-          @include table-row-headers;
-        }
-
-        &:nth-child(5),
-        &:nth-child(6) {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          padding: 0 10px;
-        }
-
-        &:last-child {
-          border-bottom: 0;
-        }
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translate(0, -50%);
+        @include table-row-headers;
       }
-    }
 
-    &__edit-btn {
-      // font-size: 20px;
-    }
+      &:nth-child(5),
+      &:nth-child(6) {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 10px;
+      }
 
-    &__delete-btn {
-      // font-size: 25px;
+      &:last-child {
+        border-bottom: 0;
+      }
     }
   }
 }
