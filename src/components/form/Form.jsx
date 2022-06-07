@@ -1,69 +1,51 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import CInput from './CInput';
-import { useFormik } from 'formik';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import ContactSchema from '../../validation';
+import CInput from './CInput';
 import './Form.scss';
 
 const Form = ({ updateContact, editMode, editedContact }) => {
-  const formik = useFormik({
-    initialValues: {
-      firstName: editedContact?.firstName ?? '',
-      lastName: editedContact?.lastName ?? '',
-      phone: editedContact?.phone ?? '',
-      email: editedContact?.email ?? '',
-    },
-    enableReinitialize: true,
-    validationSchema: ContactSchema,
-    onSubmit: (values, { resetForm }) => {
-      if (editMode) {
-        updateContact({ id: editedContact.id, ...values });
-      } else {
-        updateContact({ id: new Date().valueOf(), ...values });
-      }
-      resetForm();
-    },
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: useMemo(() => {
+      return editedContact;
+    }, [editedContact]),
+    mode: 'onChange',
+    resolver: yupResolver(ContactSchema),
   });
 
-  console.log(formik.touched);
+  const onSubmit = (data) => {
+    updateContact({ id: new Date().valueOf(), ...data });
+    reset();
+  };
 
   return (
-    <form className="form" onSubmit={formik.handleSubmit}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <CInput
-        name="firstName"
         placeholder="First Name"
-        value={formik.values.firstName}
-        updateValue={formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        errors={formik.errors}
+        register={register('firstName')}
+        errors={errors}
       />
       <CInput
-        name="lastName"
         placeholder="Last Name"
-        value={formik.values.lastName}
-        updateValue={formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        errors={formik.errors}
+        register={register('lastName')}
+        errors={errors}
       />
       <CInput
-        name="phone"
         placeholder="Phone"
-        value={formik.values.phone}
-        updateValue={formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        errors={formik.errors}
+        register={register('phone')}
+        errors={errors}
       />
       <CInput
-        name="email"
         placeholder="Email"
-        value={formik.values.email}
-        updateValue={formik.handleChange}
-        onBlur={formik.handleBlur}
-        touched={formik.touched}
-        errors={formik.errors}
+        register={register('email')}
+        errors={errors}
       />
       <button type="submit" className="form__submit-btn">
         {editMode ? 'Update' : 'Add'}
@@ -74,7 +56,12 @@ const Form = ({ updateContact, editMode, editedContact }) => {
 
 Form.defaultProps = {
   editMode: false,
-  editedContact: null,
+  editedContact: {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+  },
 };
 
 Form.propTypes = {
