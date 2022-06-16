@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './App.scss';
+
 import Form from './components/form/Form';
 import EditRecordModal from './components/modals/EditRecordModal';
 import Table from './components/table/Table';
+
+import './App.scss';
 
 const App = () => {
   const [contacts, setContacts] = useState(() => {

@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
-import { useForm } from 'react-hook-form';
-import PropTypes from 'prop-types';
-import FilterInput from './FilterInput';
-import './FilterPanel.scss';
 import debounce from 'lodash.debounce';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+
+import FilterInput from './FilterInput';
+
+import './FilterPanel.scss';
 
 const FilterPanel = ({ updateFilterValue }) => {
   const { register } = useForm();

@@ -1,9 +1,13 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
+
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import ContactSchema from '../../validation';
+
 import CInput from './CInput';
+
 import './Form.scss';
 
 const Form = ({ updateContact, editMode, editedContact }) => {

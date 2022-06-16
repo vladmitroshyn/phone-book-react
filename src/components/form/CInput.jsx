@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import './CInput.scss';
 
 const CInput = ({ placeholder, register, errors }) => {

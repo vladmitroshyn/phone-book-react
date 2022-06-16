@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './TableRow.scss';
 import { FaEdit, FaTimes } from 'react-icons/fa';
+
+import './TableRow.scss';
 
 const TableRow = ({ record, openEditModal, deleteRecord }) => {
   return (

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import TableHeader from './TableHeader';
-import TableBody from './TableBody';
-import FilterPanel from './FilterPanel';
-import './Table.scss';
 import {
-  MdOutlineKeyboardArrowRight,
   MdKeyboardArrowDown,
+  MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
+
+import FilterPanel from './FilterPanel';
+import TableBody from './TableBody';
+import TableHeader from './TableHeader';
+
+import './Table.scss';
 
 const Table = ({ records, openEditModal, deleteRecord }) => {
   const [filters, setFilters] = useState({

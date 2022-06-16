@@ -1,5 +1,5 @@
-import * as Yup from 'yup';
 import { isPossiblePhoneNumber } from 'libphonenumber-js';
+import * as Yup from 'yup';
 
 const ContactSchema = Yup.object().shape({
   firstName: Yup.string()

@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './EditRecordModal.scss';
-import ReactModal from 'react-modal';
-import Form from '../form/Form';
 import { FaTimes } from 'react-icons/fa';
+import ReactModal from 'react-modal';
+
+import Form from '../form/Form';
+
+import './EditRecordModal.scss';
 
 const EditRecordModal = ({
   modalIsOpen,
