@@ -51,15 +51,13 @@ const App = () => {
 
   return (
     <div className="app">
-      <div id="modal">
+      <div className="app__wrapper">
         <EditRecordModal
           modalIsOpen={modalIsOpen}
           closeModal={handleCloseModal}
           editedContact={editedContact}
           editContact={editContact}
         />
-      </div>
-      <div className="app__wrapper">
         <header className="app__header">
           <h1>React Phone Book</h1>
         </header>

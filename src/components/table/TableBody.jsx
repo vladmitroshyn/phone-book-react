@@ -1,5 +1,7 @@
 import React from 'react';
+import { createRef } from 'react';
 import PropTypes from 'prop-types';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import TableRow from './TableRow';
 
@@ -8,14 +10,27 @@ import './TableBody.scss';
 const TableBody = ({ records, openEditModal, deleteRecord }) => {
   return (
     <tbody className="table__tbody tbody">
-      {records.map((record) => (
-        <TableRow
-          key={record.id}
-          record={record}
-          openEditModal={openEditModal}
-          deleteRecord={deleteRecord}
-        />
-      ))}
+      <TransitionGroup component={null}>
+        {records.map((record) => {
+          const itemRef = createRef(null);
+          return (
+            <CSSTransition
+              key={record.id}
+              in
+              timeout={500}
+              nodeRef={itemRef}
+              classNames="item"
+            >
+              <TableRow
+                ref={itemRef}
+                record={record}
+                openEditModal={openEditModal}
+                deleteRecord={deleteRecord}
+              />
+            </CSSTransition>
+          );
+        })}
+      </TransitionGroup>
     </tbody>
   );
 };

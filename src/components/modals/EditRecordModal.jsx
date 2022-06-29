@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FaTimes } from 'react-icons/fa';
 import ReactModal from 'react-modal';
@@ -13,16 +14,17 @@ const EditRecordModal = ({
   editedContact,
   editContact,
 }) => {
-  useEffect(() => ReactModal.setAppElement('#modal'), []);
-
+  useEffect(() => {
+    ReactModal.setAppElement('#root');
+  }, []);
   return (
     <ReactModal
-      ariaHideApp={false}
       isOpen={modalIsOpen}
-      contentLabel="onRequestClose Example"
       onRequestClose={closeModal}
-      className="modal__window"
+      closeTimeoutMS={500}
+      contentLabel="Modal for contact editing"
       overlayClassName="modal"
+      className="modal__window"
     >
       <FaTimes className="modal__close-btn" onClick={closeModal} />
       <h2>Edit record</h2>
